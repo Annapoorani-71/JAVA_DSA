@@ -1,0 +1,269 @@
+Here’s an explanation of each advanced topic on Java methods along with code examples to challenge your students:
+
+---
+
+### 1. **Method References and Functional Interfaces**
+Method references simplify lambdas. They are categorized into:  
+1. **Static methods** (`ClassName::methodName`)  
+2. **Instance methods** (`instance::methodName`)  
+3. **Constructor references** (`ClassName::new`)  
+
+```java
+import java.util.function.Function;
+
+public class MethodReferenceExample {
+    public static void main(String[] args) {
+        // Static method reference
+        Function<String, Integer> parseInt = Integer::parseInt;
+        System.out.println(parseInt.apply("123"));
+
+        // Instance method reference
+        String text = "hello";
+        Function<String, String> toUpperCase = text::concat;
+        System.out.println(toUpperCase.apply(" world"));
+
+        // Constructor reference
+        Function<String, StringBuilder> stringBuilder = StringBuilder::new;
+        System.out.println(stringBuilder.apply("Hello Method References!"));
+    }
+}
+```
+
+---
+
+### 2. **Varargs and Ambiguity in Overloaded Methods**
+
+```java
+public class VarargsAmbiguity {
+    public void print(String... messages) {
+        System.out.println("Varargs version");
+    }
+
+    public void print(String message) {
+        System.out.println("Single argument version");
+    }
+
+    public static void main(String[] args) {
+        VarargsAmbiguity test = new VarargsAmbiguity();
+        test.print("hello");   // Calls single-argument version
+        test.print();          // Calls varargs version
+        test.print(null);      // Which one? -> Ambiguity!
+    }
+}
+```
+**Challenge:** Explain why `null` causes ambiguity.
+
+---
+
+### 3. **Dynamic Method Invocation with Reflection**
+
+```java
+import java.lang.reflect.Method;
+
+public class ReflectionDemo {
+    public void sayHello() {
+        System.out.println("Hello, Reflection!");
+    }
+
+    public static void main(String[] args) throws Exception {
+        ReflectionDemo demo = new ReflectionDemo();
+        Method method = demo.getClass().getMethod("sayHello");
+        method.invoke(demo); // Invoke method at runtime
+    }
+}
+```
+
+**Challenge:** Create a program to invoke all public methods of a given class.
+
+---
+
+### 4. **Recursion with Constraints**
+
+```java
+public class TailRecursionExample {
+    public static int factorialTailRec(int n, int accumulator) {
+        if (n == 0) return accumulator; // Base case
+        return factorialTailRec(n - 1, n * accumulator); // Recursive call
+    }
+
+    public static void main(String[] args) {
+        System.out.println(factorialTailRec(5, 1)); // Outputs 120
+    }
+}
+```
+
+**Challenge:** Implement tail-recursive Fibonacci.
+
+---
+
+### 5. **Default and Static Methods in Interfaces**
+
+```java
+interface Calculator {
+    default int add(int a, int b) {
+        return a + b;
+    }
+
+    static int multiply(int a, int b) {
+        return a * b;
+    }
+}
+
+public class DefaultStaticMethods implements Calculator {
+    public static void main(String[] args) {
+        Calculator calculator = new DefaultStaticMethods();
+        System.out.println("Addition: " + calculator.add(3, 5));
+        System.out.println("Multiplication: " + Calculator.multiply(3, 5));
+    }
+}
+```
+
+---
+
+### 6. **Covariant Return Types**
+
+```java
+class Base {
+    public Number method() {
+        return 42;
+    }
+}
+
+class Derived extends Base {
+    @Override
+    public Integer method() {
+        return 42;
+    }
+}
+
+public class CovariantExample {
+    public static void main(String[] args) {
+        Base obj = new Derived();
+        System.out.println(obj.method()); // Calls Derived's method
+    }
+}
+```
+
+---
+
+### 7. **Hidden vs. Overridden Static Methods**
+
+```java
+class Parent {
+    static void staticMethod() {
+        System.out.println("Static method in Parent");
+    }
+
+    void instanceMethod() {
+        System.out.println("Instance method in Parent");
+    }
+}
+
+class Child extends Parent {
+    static void staticMethod() {
+        System.out.println("Static method in Child");
+    }
+
+    @Override
+    void instanceMethod() {
+        System.out.println("Instance method in Child");
+    }
+}
+
+public class StaticOverride {
+    public static void main(String[] args) {
+        Parent obj = new Child();
+        obj.staticMethod(); // Calls Parent's static method
+        obj.instanceMethod(); // Calls Child's instance method
+    }
+}
+```
+
+---
+
+### 8. **Method Chaining**
+
+```java
+class QueryBuilder {
+    private String query = "";
+
+    public QueryBuilder select(String fields) {
+        query += "SELECT " + fields + " ";
+        return this;
+    }
+
+    public QueryBuilder from(String table) {
+        query += "FROM " + table + " ";
+        return this;
+    }
+
+    public QueryBuilder where(String condition) {
+        query += "WHERE " + condition + " ";
+        return this;
+    }
+
+    public String build() {
+        return query.trim();
+    }
+}
+
+public class MethodChaining {
+    public static void main(String[] args) {
+        QueryBuilder qb = new QueryBuilder();
+        String query = qb.select("*").from("students").where("age > 18").build();
+        System.out.println(query);
+    }
+}
+```
+
+---
+
+### 9. **Performance Comparison of Recursive vs Iterative Methods**
+
+```java
+public class PerformanceComparison {
+    public static long iterativeFactorial(int n) {
+        long result = 1;
+        for (int i = 1; i <= n; i++) result *= i;
+        return result;
+    }
+
+    public static long recursiveFactorial(int n) {
+        if (n == 0) return 1;
+        return n * recursiveFactorial(n - 1);
+    }
+
+    public static void main(String[] args) {
+        int n = 20;
+        System.out.println("Iterative: " + iterativeFactorial(n));
+        System.out.println("Recursive: " + recursiveFactorial(n));
+    }
+}
+```
+
+---
+
+### 10. **Generics in Methods**
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class GenericsExample {
+    public static <T> List<T> mergeLists(List<T> list1, List<T> list2) {
+        List<T> result = new ArrayList<>(list1);
+        result.addAll(list2);
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<String> list1 = List.of("A", "B");
+        List<String> list2 = List.of("C", "D");
+        System.out.println(mergeLists(list1, list2));
+    }
+}
+```
+
+--- 
+
+Which topic do you want me to explore further or refine?

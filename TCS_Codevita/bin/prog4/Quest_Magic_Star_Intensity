@@ -1,0 +1,59 @@
+In the 1930s, King Krishnadevaraya, who had a great love for magic, kept a personal magician in his palace. Whenever he desired to witness a magical performance, he would command the magician to entertain him with his craft.
+
+The magician constantly aimed to impress the king with new magical tricks. One day, he cast magical lines across the vast expanse of the palace floor, which was covered in tiles. Each tile is a square with sides of 1 unit length; thus, you can say the palace floor resembles a 2D plane.
+
+Since these are magical lines, when they are drawn, they only align with the edges of the tiles or pass through their corners.
+
+When these magical lines intersect, they create points of light called n-stars, where n ranges from 2 to 8. Each n-star forms when n lines intersect, and all these stars generate light.
+
+For calculating the intensity of the star, there exist two cases which are explained below.
+
+Consider the cases carefully.
+
+Case 1 - The line is only one side to the star, i.e., the star won't cut the line into two parts.
+
+Consider the lines (4, 4, 4, 2), (4, 4, 7, 7), and (4, 4, 3, 5). These lines are intersecting at the point (4, 4). Since three lines intersect at a point, they form a star known as a 3-star.
+
+Now, the intensity of the star = minimum (the number of cells these 3 lines are touching from the point of star formation to the last) = minimum (2, 3, 1) = 1
+
+So, the intensity of this star will be 1.
+
+Case 2 - The line is two sides to the star i.e., the star cuts the line into two parts.
+
+Consider the lines (3, 3, 7, 7), (3, 5, 6, 2) and (4, 2, 4, 6). These lines are intersecting at the point (4, 4). Since three lines intersect at a point, they form a star known as a 3-star.
+
+In this case, the intensity of the star = minimum (the number of cells these 3 lines are touching from the point of star formation to the last on both sides) = minimum (1, 1, 2, 2, 3, 2) = 1.
+
+
+
+
+Constraints
+
+1 <= N <= 50 2 <= K <= 8 0 <= x, y <= 100 Lines will not overlap either partially or completely.
+
+Input
+
+First line consists of an integer N, denoting the number of magical lines the magician cast. The next N lines contain four space-separated integers each, representing the x and y coordinates of the starting and ending points of the magical lines. The last line consists of an integer K denoting the type of star for which you need to calculate the intensity.
+
+Output
+
+Print a single integer representing the total intensity of all stars of the specified type given in the input. If no such stars are present, print 0.
+
+Time Limit (secs)
+
+1
+
+Example
+Input
+7
+4 2 4 6
+6 5 6 7
+1 3 3 5
+3 5 4 4 
+3 3 7 7 
+2 2 2 5
+4 4 5 3 
+4
+
+Output 
+1

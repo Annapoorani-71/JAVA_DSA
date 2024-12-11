@@ -1,0 +1,85 @@
+Sliding Window Technique is a method used to efficiently solve problems that involve defining a window or range in the input data (arrays or strings) and then moving that window across the data to perform some operation within the window. This technique is commonly used in algorithms like finding subarrays with a specific sum, finding the longest substring with unique characters, or solving problems that require a fixed-size window to process elements efficiently.
+
+How to Identify Sliding Window Problems:
+------------------------------------------
+These problems generally require Finding Maximum/Minimum Subarray, Substrings which satisfy some specific condition.
+The size of the subarray or substring ‘K’ will be given in some of the problems.
+These problems can easily be solved in O(N2) time complexity using nested loops, using sliding window we can solve these in O(n) Time Complexity.
+Required Time Complexity: O(N) or O(Nlog(N))
+Constraints: N <= 106 , If N is the size of the Array/String.
+
+
+PROBLEMS
+--------
+Use Cases of Sliding Window Technique:
+1. To find the maximum sum of all subarrays of size K:
+2. Smallest subarray with sum greater than a given value:
+3. Find subarray with given sum in an array of non-negative integers:
+4. Smallest window that contains all characters of string itself:
+
+
+
+
+
+
+
+
+
+
+
+Both fixed-size and variable-size sliding window techniques are widely used in various real-time applications across different domains. Below are some examples of their practical applications:
+
+### Real-Time Usage of Fixed-Size Sliding Window Problems
+
+1. **Traffic Monitoring**:
+   - In network traffic analysis, a fixed-size sliding window can be used to analyze the amount of data transferred over a specific time period. This is helpful for understanding bandwidth usage and identifying potential bottlenecks.
+
+2. **Stock Price Analysis**:
+   - Fixed-size windows are used to calculate moving averages over a fixed number of days (e.g., 7-day or 30-day moving average) to smooth out stock price data and identify trends.
+
+3. **Image Processing**:
+   - In computer vision, a fixed-size sliding window is often used for object detection. For instance, a fixed-size window is moved over an image to classify regions and identify objects.
+
+4. **Real-Time Sensor Data Monitoring**:
+   - Fixed-size windows can be applied to sensor data for applications like temperature or humidity monitoring, where readings over a defined interval are analyzed to detect anomalies or trends.
+
+5. **Streaming Data Analytics**:
+   - In platforms like Apache Kafka or Flink, fixed-size windows help aggregate data over a specified period for computations like sum, average, or count, enabling efficient processing of data streams.
+
+### Real-Time Usage of Variable-Size Sliding Window Problems
+
+1. **Dynamic Traffic Management**:
+   - In smart cities, variable-size sliding windows can optimize traffic flow by adjusting the green signal duration based on real-time vehicle counts and congestion levels.
+
+2. **Text Processing and Natural Language Processing (NLP)**:
+   - In NLP, variable-size windows can be used to identify the longest substring or sequence of characters that meet certain criteria (like unique characters) in real-time chat applications or search queries.
+
+3. **Adaptive Network Monitoring**:
+   - Variable-size windows can help dynamically adjust the monitoring of network packets based on current traffic load, identifying periods of high congestion or unusual activity.
+
+4. **Financial Market Analysis**:
+   - In high-frequency trading, algorithms often use variable-size windows to adjust the analysis period based on volatility, allowing traders to adapt to rapidly changing market conditions.
+
+5. **Audio Signal Processing**:
+   - In speech recognition systems, variable-size windows can analyze audio signals based on changing sound properties to enhance the accuracy of voice commands and interactions.
+
+6. **Real-Time Game Analytics**:
+   - In gaming, variable-size windows can track player performance over different periods, adapting to player behavior to provide insights or adjust difficulty levels dynamically.
+
+### Summary of Fixed vs. Variable Size Window Applications
+
+| Type of Window          | Real-Time Usage                                   | Description                                                   |
+|------------------------|---------------------------------------------------|---------------------------------------------------------------|
+| **Fixed-Size Sliding Window**  | Traffic Monitoring                              | Analyzes data over a constant time interval to detect trends. |
+|                        | Stock Price Analysis                             | Calculates moving averages over a defined number of days.     |
+|                        | Image Processing                                 | Applies object detection using fixed-size windows over images. |
+|                        | Real-Time Sensor Monitoring                       | Analyzes readings from sensors over a constant timeframe.      |
+|                        | Streaming Data Analytics                          | Aggregates data streams for computation over set intervals.    |
+| **Variable-Size Sliding Window** | Dynamic Traffic Management                      | Adjusts traffic signals based on real-time vehicle counts.     |
+|                        | Text Processing / NLP                            | Identifies longest substrings that meet certain conditions.    |
+|                        | Adaptive Network Monitoring                       | Adjusts monitoring based on current traffic load.              |
+|                        | Financial Market Analysis                        | Analyzes periods of volatility in high-frequency trading.      |
+|                        | Audio Signal Processing                          | Analyzes speech signals based on changing sound properties.     |
+|                        | Real-Time Game Analytics                         | Tracks player performance and adapts dynamically to behavior.   |
+
+In summary, both fixed-size and variable-size sliding window techniques serve critical roles in real-time applications, allowing for efficient data processing and analytics across various domains. Their adaptability makes them particularly effective in responding to changing conditions and constraints in real-time scenarios.
